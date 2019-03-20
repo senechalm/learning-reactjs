@@ -11,21 +11,15 @@ export function requestUserInfo() {
         "picture": "assets/img/avatars/sunny.png",
         "activity": 12
       } 
-      return dispatch => {
-        
-          dispatch({
-            type: USER_INFO,
-            payload: usertest
-          });
-    
-      };
+      return {
+        type: USER_INFO,
+        payload: usertest
+      };    
     } else {
-      return dispatch => {
-          dispatch({
-            type: USER_INFO,
-            payload: {"username": "","picture": "","activity": 0}
-          });
-      };
+      return {
+        type: USER_INFO,
+        payload: {username: "",picture: "",activity: 0}
+      }; 
     }
 }
 

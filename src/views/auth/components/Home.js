@@ -13,11 +13,11 @@ class Home extends React.Component {
     }
 }
 
-  componentWillMount() {
-    console.log("before"+this.props.username)
-    requestUserInfo()
-    console.log("after"+this.props.username)
-  }
+componentDidMount() {
+  console.log("before"+this.props.username)
+  this.props.requestUserInfo();
+  console.log("after"+this.props.username)
+}
   routeChange(e) {
     e.preventDefault()
     sessionStorage.removeItem('usertoken')
@@ -66,6 +66,11 @@ class Home extends React.Component {
         );
       }
 }
-const mapStateToProps = state => state.user;
+const mapStateToProps = (state) => state.user;
 
-export default connect(mapStateToProps)(Home); 
+function mapDispatchToProps (dispatch) {
+  return {
+    requestUserInfo: ()=> dispatch(requestUserInfo()) 
+  }
+}
+export default connect(mapStateToProps,mapDispatchToProps)(Home); 
